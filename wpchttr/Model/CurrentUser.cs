@@ -26,9 +26,9 @@ namespace wpchttr.Model
             if (handler != null) handler(this, new PropertyChangedEventArgs(propName));
         }
 
-        public bool SignIn(CurrentUser currentUser)
+        public bool SignIn()
         {
-            var jsonRequest = BuildJsonRequest(currentUser.email, currentUser.password);
+            var jsonRequest = BuildJsonRequest(Email, Password);
             var response = PostSignIn(jsonRequest);
             var allFieldsPopulated = ParseResponse(response);
             if (!string.IsNullOrEmpty(Email))
@@ -38,9 +38,9 @@ namespace wpchttr.Model
             return allFieldsPopulated;
         }
 
-        private void GetGravatarUrl(string email)
+        private void GetGravatarUrl(string rawEmail)
         {
-            GravatarUrl = Session.GRAVATAR_BASE_URL + MD5.GetMd5String(Email);
+            GravatarUrl = Session.GRAVATAR_BASE_URL + MD5.GetMd5String(rawEmail);
         }
 
         private string PostSignIn(string jsonRequest)

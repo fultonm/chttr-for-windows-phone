@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
 using wpchttr.Model;
 using wpchttr.View;
 
@@ -21,7 +22,8 @@ namespace wpchttr.ViewModel
                 switchViewMessage => { SwitchView(switchViewMessage.ViewName); });
             ContentControlView = new SignIn();
             SignInCommand = new RelayCommand(CurrentUserSignIn, CurrentUserCanSignIn);
-            RefreshProfileCommand = new RelayCommand(RefreshProfile, CanRefreshProfile);
+
+            // Debugging quick sign in
             CurrentUser = new CurrentUser("fultonm@wartimestudios.com", "mike2009");
             CurrentUserSignIn();
         }
@@ -67,7 +69,7 @@ namespace wpchttr.ViewModel
 
         private void CurrentUserSignIn()
         {
-            if (CurrentUser.SignIn(CurrentUser))
+            if (CurrentUser.SignIn())
             {
                 CurrentUser.Relationships = new Relationships();
 
