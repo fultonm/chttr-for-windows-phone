@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Chat.cs" />
     <Compile Include="Model\Relationships.cs" />
     <Compile Include="Model\SwitchViewMessage.cs" />
     <Compile Include="View\chttrPivot.xaml.cs">

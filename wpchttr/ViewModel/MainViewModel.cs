@@ -12,8 +12,7 @@ using wpchttr.View;
 namespace wpchttr.ViewModel
 {
     public class MainViewModel : ViewModelBase
-    {
-        private readonly ViewModelLocator vml = new ViewModelLocator();
+    { 
         private FrameworkElement contentControlView;
 
         public MainViewModel()
@@ -28,7 +27,7 @@ namespace wpchttr.ViewModel
         }
 
         public CurrentUser CurrentUser { get; set; }
-        public Relationships CurrentUserRelationships { get; set; }
+
         public string MSG { get; set; }
 
         public RelayCommand SignInCommand { get; private set; }
@@ -57,10 +56,11 @@ namespace wpchttr.ViewModel
             {
                 case "SignInView":
                     ContentControlView = new SignIn();
-                    ContentControlView.DataContext = vml.Main;
+                    ContentControlView.DataContext = this;
                     break;
                 case "PivotView":
                     ContentControlView = new chttrPivot();
+                    ContentControlView.DataContext = this;
                     break;
             }
         }
@@ -69,13 +69,13 @@ namespace wpchttr.ViewModel
         {
             if (CurrentUser.SignIn(CurrentUser))
             {
-                ShowDialog("Success");
-                CurrentUserRelationships = new Relationships();
+                CurrentUser.Relationships = new Relationships();
+
                 SwitchView("PivotView");
             }
             else
             {
-                ShowDialog("Sign in failed. Check email and password?");
+                ShowDialog("Sign in failed. Check internet connection or email and password?");
             }
 
             foreach (var s in CurrentUser.ErrorInformation)
@@ -92,7 +92,7 @@ namespace wpchttr.ViewModel
         private void RefreshProfile()
         {
             RefreshingProfile = true;
-            CurrentUserRelationships = new Relationships();
+            CurrentUser.Relationships = new Relationships();
             RefreshingProfile = false;
         }
 

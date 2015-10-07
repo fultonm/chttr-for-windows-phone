@@ -110,6 +110,11 @@ namespace wpchttr.Model
             }
         }
 
+        internal void Refresh()
+        {
+            CurrentUserRelationships();
+        }
+
         public List<string> ErrorInformation { get; set; }
 
         #endregion

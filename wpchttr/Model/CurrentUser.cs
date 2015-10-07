@@ -283,6 +283,8 @@ namespace wpchttr.Model
             }
         }
 
+        public Relationships Relationships { get; set; }
+
         public string GravatarUrl { get; set; }
 
         public DateTime CreatedAt { get; set; }
