@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 
-namespace wpchttr.Model
+namespace wpchttr.Core
 {
     public class Relationships : INotifyPropertyChanged
     {

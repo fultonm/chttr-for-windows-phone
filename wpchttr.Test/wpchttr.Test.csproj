@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{0E27D309-8463-44EA-A559-C566B4C96B0F}</ProjectGuid>
+    <ProjectGuid>{E6CBB8DD-5C52-49B5-9755-32E6578006F7}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>wpchttr.Test</RootNamespace>
@@ -125,9 +125,15 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\wpchttr\wpchttr.csproj">
-      <Project>{369225da-7199-419e-abd0-a717842a367c}</Project>
-      <Name>wpchttr</Name>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\wpchttr.Core\wpchttr.Core.csproj">
+      <Project>{17cc955a-db49-42da-8c83-54422ad133bb}</Project>
+      <Name>wpchttr.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using XLabs.Cryptography;
 
-namespace wpchttr.Model
+namespace wpchttr.Core
 {
     public class CurrentUser : INotifyPropertyChanged
     {
@@ -29,13 +29,21 @@ namespace wpchttr.Model
         public bool SignIn()
         {
             var jsonRequest = BuildJsonRequest(Email, Password);
-            var response = PostSignIn(jsonRequest);
-            var allFieldsPopulated = ParseResponse(response);
+
+            try
+            {
+                var response = PostSignIn(jsonRequest);
+                var allFieldsPopulated = ParseResponse(response);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             if (!string.IsNullOrEmpty(Email))
             {
                 GetGravatarUrl(Email);
             }
-            return allFieldsPopulated;
+            return true;
         }
 
         private void GetGravatarUrl(string rawEmail)
@@ -45,7 +53,7 @@ namespace wpchttr.Model
 
         private string PostSignIn(string jsonRequest)
         {
-            var signInUrl = Session.BASE_URL + "/sign_in";
+            var signInUrl = "http://localhost:3000/sign_in";
             var client = new HttpClient();
             client.BaseAddress = new Uri(signInUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

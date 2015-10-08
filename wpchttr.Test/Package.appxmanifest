@@ -5,11 +5,11 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity Name="d62ea326-f6a1-411a-9be2-5ab37c6155d7"
+  <Identity Name="15556f3b-eaba-41f5-b47e-534c0a8b42ed"
             Publisher="CN=Michael Fulton"
             Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="d62ea326-f6a1-411a-9be2-5ab37c6155d7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="15556f3b-eaba-41f5-b47e-534c0a8b42ed" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>wpchttr.Test</DisplayName>

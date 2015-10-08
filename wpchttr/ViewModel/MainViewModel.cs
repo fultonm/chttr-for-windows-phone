@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using wpchttr.Model;
 using wpchttr.View;
+using wpchttr.Core;
 
 namespace wpchttr.ViewModel
 {
@@ -67,7 +68,7 @@ namespace wpchttr.ViewModel
             }
         }
 
-        private void CurrentUserSignIn()
+        private async void CurrentUserSignIn()
         {
             if (CurrentUser.SignIn())
             {
@@ -77,7 +78,7 @@ namespace wpchttr.ViewModel
             }
             else
             {
-                ShowDialog("Sign in failed. Check internet connection or email and password?");
+                await ShowDialog("Sign in failed. Check internet connection or email and password?");
             }
 
             foreach (var s in CurrentUser.ErrorInformation)

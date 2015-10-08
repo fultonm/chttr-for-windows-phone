@@ -1,8 +1,8 @@
-﻿namespace wpchttr.Model
+﻿namespace wpchttr.Core
 {
     internal class Session
     {
-        public static string BASE_URL = "http://localhost:3000";
+        public static string BASE_URL = "http://localhost:3000/api/";
         public static string GRAVATAR_BASE_URL = "http://www.gravatar.com/avatar/";
 
         public Session(string email, string password)
