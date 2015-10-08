@@ -31,18 +31,36 @@ namespace wpchttr.Test
         }
 
         [TestMethod]
-        public void CurrentUser_Relationships_ReturnsData()
+        public void Relationships_ReturnsRelationshipCounts()
         {
             Relationships relationships = currentUser.Relationships = new Relationships();
-            Assert.IsTrue(relationships.Followers + relationships.Following > 0);
+            Assert.IsTrue(relationships.FollowersCount + relationships.FollowingCount > 0);
         }
 
         [TestMethod]
-        public void CurrentUser_Chats_ReturnsChatCollection()
+        public void Chats_ReturnsCurrentUserChatCollection()
         {
             Chats chats = currentUser.Chats = new Chats(currentUser.Id);
             Assert.IsTrue(chats.ChatCollection.Count > 0);
         }
 
+        [TestMethod]
+        public void RequestFollowingChat_ReturnsNonEmptyFollowedChatContent()
+        {
+            Relationships relationships = currentUser.Relationships = new Relationships();
+            User followed = currentUser.Relationships.Following[0];
+            string chatContent = followed.Chats.ChatCollection[0].Content;
+            Assert.IsFalse(string.IsNullOrEmpty(chatContent));
+        }
+
+        [TestMethod]
+        public void SubmitChat_ChatCanBeRetrieved()
+        {
+            Chat chat = new Chat("Visual Studio unit testing chat submission.");
+            Assert.IsTrue(chat.Submit());
+            currentUser.Chats = new Chats(currentUser.Id);
+            Chat retrievedChat = currentUser.Chats.ChatCollection[0];
+            Assert.AreEqual(chat.Content, retrievedChat.Content);
+        }
     }
 }

@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.Views;
 using wpchttr.Model;
 using wpchttr.View;
 using wpchttr.Core;
+using System.Collections.Generic;
 
 namespace wpchttr.ViewModel
 {
@@ -25,7 +26,6 @@ namespace wpchttr.ViewModel
             SignInCommand = new RelayCommand(CurrentUserSignIn, CurrentUserCanSignIn);
 
             // Debugging quick sign in
-            CurrentUser = new CurrentUser("fultonm@wartimestudios.com", "mike2009");
             CurrentUserSignIn();
         }
 
@@ -70,10 +70,10 @@ namespace wpchttr.ViewModel
 
         private async void CurrentUserSignIn()
         {
+            CurrentUser = new CurrentUser("fultonm@wartimestudios.com", "mike2009"); // debug
             if (CurrentUser.SignIn())
             {
                 CurrentUser.Relationships = new Relationships();
-
                 SwitchView("PivotView");
             }
             else
@@ -82,6 +82,10 @@ namespace wpchttr.ViewModel
             }
 
             foreach (var s in CurrentUser.ErrorInformation)
+            {
+                MSG += s;
+            }
+            foreach (var s in CurrentUser.Relationships.ErrorInformation)
             {
                 MSG += s;
             }
@@ -96,6 +100,7 @@ namespace wpchttr.ViewModel
         {
             RefreshingProfile = true;
             CurrentUser.Relationships = new Relationships();
+            List<Chat> chats = CurrentUser.Chats.ChatCollection;
             RefreshingProfile = false;
         }
 

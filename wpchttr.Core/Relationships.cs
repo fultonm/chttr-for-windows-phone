@@ -27,6 +27,8 @@ namespace wpchttr.Core
         {
             var response = GetRelationshipsResponse();
             ParseResponse(response);
+            FollowingCount = Following.Count;
+            FollowersCount = Followers.Count;
         }
 
         private string GetRelationshipsResponse()
@@ -51,62 +53,62 @@ namespace wpchttr.Core
                 ErrorInformation.Add(e.ToString());
                 return false;
             }
-
-            ParseFollowing(jo);
-            ParseFollowers(jo);
-
+            Followers = ParseUsers(jo, "followers");
+            Following = ParseUsers(jo, "following");
             return true;
         }
 
-        private void ParseFollowers(JObject jo)
+        private List<User> ParseUsers(JObject jo, string group)
         {
+            List<User> users = new List<User>();
             try
             {
-                Followers = (int) jo.SelectToken("followers");
+                JArray jaUsers = jo.SelectToken(group) as JArray;
+                foreach (JObject joUser in jaUsers)
+                {
+                    int userId = joUser.ParseJsonInt("id");
+                    string userName = joUser.ParseJsonString("name");
+                    DateTime userCreatedAt = joUser.ParseJsonDateTime("created_at");
+                    User user = new User(userId, userName, userCreatedAt);
+                    users.Add(user);
+                }
             }
             catch (Exception e)
             {
                 ErrorInformation.Add(e.ToString());
             }
-        }
-
-        private void ParseFollowing(JObject jo)
-        {
-            try
-            {
-                Following = (int) jo.SelectToken("following");
-            }
-            catch (Exception e)
-            {
-                ErrorInformation.Add(e.ToString());
-            }
+            return users;
         }
 
         #region fields;
 
-        private int followers;
+        public List<User> Followers { get; set; }
 
-        public int Followers
+        public List<User> Following { get; set; }
+
+        private int followersCount;
+
+        public int FollowersCount
         {
-            get { return followers; }
+            get { return followersCount; }
 
             set
             {
-                followers = value;
-                OnPropertyChanged("Followers");
+                followersCount = value;
+                OnPropertyChanged("FollowersCount");
             }
         }
 
-        private int following;
+        private int followingCount;
 
-        public int Following
+        public int FollowingCount
         {
-            get { return following; }
+            get { return followingCount; }
 
             set
             {
-                following = value;
-                OnPropertyChanged("Following");
+                followingCount = value;
+                OnPropertyChanged("FollowingCount");
             }
         }
 
