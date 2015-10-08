@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace wpchttr.Core
 {
-    class Chat
+    public class Chat
     {
+        public int ChatId { get; set; }
+        public int UserId { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

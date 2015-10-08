@@ -31,7 +31,7 @@ namespace wpchttr.Core
 
         private string GetRelationshipsResponse()
         {
-            var relationshipUrl = Session.BASE_URL + "/relationship_stats";
+            var relationshipUrl = Session.BASE_URL + "/relationships";
             var client = new HttpClient();
             client.BaseAddress = new Uri(relationshipUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

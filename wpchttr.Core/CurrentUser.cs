@@ -293,6 +293,8 @@ namespace wpchttr.Core
 
         public Relationships Relationships { get; set; }
 
+        public Chats Chats { get; set; }
+
         public string GravatarUrl { get; set; }
 
         public DateTime CreatedAt { get; set; }
