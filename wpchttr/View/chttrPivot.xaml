@@ -8,12 +8,15 @@
     mc:Ignorable="d"
     d:DesignHeight="600"
     d:DesignWidth="400">
-
-    <StackPanel>
-        <StackPanel>
-            <StackPanel Height="80">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="135"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel Height="55">
                 <Border Background="Black">
-                    <Image Source="../Assets/chttrlogo.png" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                    <Image Source="../Assets/chttrlogo.png" Height="55" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                 </Border>
             </StackPanel>
             <Grid Margin="10,10,0,0" Height="70" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -29,32 +32,32 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Image x:Name="image_current_user_gravatar"
-                       Source="{Binding CurrentUser.GravatarUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                       Height="70" Width="70" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Left" />
+                   Source="{Binding CurrentUser.GravatarUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   Height="70" Width="70" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Left" />
                 <TextBlock x:Name="textblock_currentuser_name" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
-        	    	Text="{Binding CurrentUser.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-        	    	HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top"
-        	    	Width="140" />
+        	    Text="{Binding CurrentUser.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        	    HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top"
+        	    Width="140" />
                 <TextBlock x:Name="textblock_currentuser_followers_label" Text="Followers:" HorizontalAlignment="Left"
-                	TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" />
+                TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" />
                 <TextBlock x:Name="textblock_currentuser_followers_count" Grid.Column="2" Grid.Row="1"
-        	    	Text="{Binding CurrentUser.Relationships.FollowersCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-        	    	HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" />
+        	    Text="{Binding CurrentUser.Relationships.FollowersCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        	    HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" />
                 <TextBlock x:Name="textblock_currentuser_following_label" Text="Following:" HorizontalAlignment="Left"
-        	    	TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+        	    TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
                 <TextBlock x:Name="textblock_currentuser_following_count" Grid.Column="2" Grid.Row="2"
-        	    	Text="{Binding CurrentUser.Relationships.FollowingCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-        	    	HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" />
+        	    Text="{Binding CurrentUser.Relationships.FollowingCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        	    HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" />
                 <Button Content="New Chat" Grid.Column="3" Grid.RowSpan="3"></Button>
             </Grid>
         </StackPanel>
-        <Pivot Margin="0,10,0,0">
-            <PivotItem Header="Feed">
-                <local:Profile />
+        <Pivot Grid.Row="1">
+            <PivotItem Margin="0,0,0,0" Header="Feed">
+                <local:Feed />
             </PivotItem>
-            <PivotItem Header="My Chats">
+            <PivotItem Margin="0,0,0,0" Header="My Chats">
                 <Grid />
             </PivotItem>
         </Pivot>
-    </StackPanel>
+    </Grid>
 </UserControl>

@@ -20,6 +20,16 @@
     </UserControl.Resources>
 
     <Grid>
-
+        <ListView x:Name="ListViewFeed"
+                  ItemsSource="{Binding CurrentUser.Chats.ChatCollection, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0, 15, 0, 15">
+                        <TextBlock Text="{Binding Content, Mode=TwoWay}" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Text="{Binding CreatedAt, Mode=TwoWay}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

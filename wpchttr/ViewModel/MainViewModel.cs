@@ -74,6 +74,7 @@ namespace wpchttr.ViewModel
             if (CurrentUser.SignIn())
             {
                 CurrentUser.Relationships = new Relationships();
+                CurrentUser.Chats = new Chats(CurrentUser.Id);
                 SwitchView("PivotView");
             }
             else
