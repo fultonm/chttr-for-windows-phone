@@ -106,6 +106,9 @@
     <Compile Include="View\Feed.xaml.cs">
       <DependentUpon>Feed.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Following.xaml.cs">
+      <DependentUpon>Following.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Feed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Following.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

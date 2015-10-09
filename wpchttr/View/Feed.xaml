@@ -21,7 +21,7 @@
 
     <Grid>
         <ListView x:Name="ListViewFeed"
-                  ItemsSource="{Binding CurrentUser.Chats.ChatCollection, Mode=TwoWay}">
+                  ItemsSource="{Binding CurrentUser.Feed.ChatCollection, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0, 15, 0, 15">

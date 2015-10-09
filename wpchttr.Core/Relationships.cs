@@ -68,8 +68,9 @@ namespace wpchttr.Core
                 {
                     int userId = joUser.ParseJsonInt("id");
                     string userName = joUser.ParseJsonString("name");
+                    string email = joUser.ParseJsonString("email");
                     DateTime userCreatedAt = joUser.ParseJsonDateTime("created_at");
-                    User user = new User(userId, userName, userCreatedAt);
+                    User user = new User(userId, userName, email, userCreatedAt);
                     users.Add(user);
                 }
             }

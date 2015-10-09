@@ -10,39 +10,31 @@ using System.Threading.Tasks;
 
 namespace wpchttr.Core
 {
-    public class Chats
+    public class Feed
     {
         public List<Chat> ChatCollection { get; set; }
 
-        public Chats(int userId, int page = 1)
+        public Feed()
         {
-            GetUserChats(userId, page);
+            GetFeed();
         }
 
-        private void GetUserChats(int userId, int page)
+        private void GetFeed()
         {
-            string response = GetChatsResponse(userId, page);
-            ParseChatsResponse(response);
+            string response = GetFeedResponse();
+            ParseFeedResponse(response);
         }
 
-        private string GetChatsResponse(int userId, int page)
+        private string GetFeedResponse()
         {
-            var chatsUrl = Session.BASE_URL + "/chats";
+            var feedUrl = Session.BASE_URL + "/feed";
             var client = new HttpClient();
-            client.BaseAddress = new Uri(chatsUrl);
+            client.BaseAddress = new Uri(feedUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            string json = BuildChatsRequestJson(userId, page);
-            var response = client.PostAsJsonAsync(chatsUrl, json).Result;
-            return response.Content.ReadAsStringAsync().Result;
+            return client.GetStringAsync(feedUrl).Result;
         }
 
-        private string BuildChatsRequestJson(int userId, int page)
-        {
-            var chatRequest = new ChatsRequest(userId, page);
-            return JsonConvert.SerializeObject(chatRequest);
-        }
-
-        private void ParseChatsResponse(string response)
+        private void ParseFeedResponse(string response)
         {
             ChatCollection = new List<Chat>();
             JArray ja = JArray.Parse(response);

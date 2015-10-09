@@ -55,8 +55,11 @@
             <PivotItem Margin="0,0,0,0" Header="Feed">
                 <local:Feed />
             </PivotItem>
-            <PivotItem Margin="0,0,0,0" Header="My Chats">
-                <Grid />
+            <PivotItem Margin="0,0,0,0" Header="Following">
+                <local:Following />
+            </PivotItem>
+            <PivotItem Margin="0,0,0,0" Header="Followers">
+                
             </PivotItem>
         </Pivot>
     </Grid>
