@@ -53,7 +53,7 @@ namespace wpchttr.Core
 
         private string PostSignIn(string jsonRequest)
         {
-            var signInUrl = "http://localhost:3000/sign_in";
+            var signInUrl = "http://chttr.wartimestudios.com/sign_in";
             var client = new HttpClient();
             client.BaseAddress = new Uri(signInUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

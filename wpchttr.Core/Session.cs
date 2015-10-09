@@ -2,7 +2,7 @@
 {
     internal class Session
     {
-        public static string BASE_URL = "http://localhost:3000/api/";
+        public static string BASE_URL = "http://chttr.wartimestudios.com/api/";
         public static string GRAVATAR_BASE_URL = "http://www.gravatar.com/avatar/";
 
         public Session(string email, string password)
