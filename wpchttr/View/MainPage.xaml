@@ -8,5 +8,5 @@
     mc:Ignorable="d"
     DataContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentControl x:Name="contentcontrol" Content="{Binding ContentControlView}" HorizontalAlignment="Left"
-                    Height="640" VerticalAlignment="Top" Width="360" />
+                    VerticalAlignment="Top" />
 </Page>
