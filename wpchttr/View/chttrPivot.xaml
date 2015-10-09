@@ -13,14 +13,15 @@
         <StackPanel>
             <StackPanel Height="80">
                 <Border Background="Black">
-            <Image Source="../Assets/chttrlogo.png" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+                    <Image Source="../Assets/chttrlogo.png" Height="80" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
                 </Border>
             </StackPanel>
-                <Grid Margin="10,10,0,0" Height="70" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid Margin="10,10,0,0" Height="70" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80"></ColumnDefinition>
-                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="45"></ColumnDefinition>
+                    <ColumnDefinition Width="1.3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -37,20 +38,21 @@
                 <TextBlock x:Name="textblock_currentuser_followers_label" Text="Followers:" HorizontalAlignment="Left"
                 	TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="1" />
                 <TextBlock x:Name="textblock_currentuser_followers_count" Grid.Column="2" Grid.Row="1"
-        	    	Text="{Binding CurrentUser.Relationships.Followers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        	    	Text="{Binding CurrentUser.Relationships.FollowersCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         	    	HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" />
                 <TextBlock x:Name="textblock_currentuser_following_label" Text="Following:" HorizontalAlignment="Left"
         	    	TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
                 <TextBlock x:Name="textblock_currentuser_following_count" Grid.Column="2" Grid.Row="2"
-        	    	Text="{Binding CurrentUser.Relationships.Following, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        	    	Text="{Binding CurrentUser.Relationships.FollowingCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         	    	HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" />
+                <Button Content="New Chat" Grid.Column="3" Grid.RowSpan="3"></Button>
             </Grid>
         </StackPanel>
         <Pivot Margin="0,10,0,0">
-            <PivotItem Header="PivotItem 0">
+            <PivotItem Header="Feed">
                 <local:Profile />
             </PivotItem>
-            <PivotItem Header="PivotItem 1">
+            <PivotItem Header="My Chats">
                 <Grid />
             </PivotItem>
         </Pivot>

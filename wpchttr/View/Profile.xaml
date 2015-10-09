@@ -23,10 +23,9 @@
         <Image x:Name="gravatar" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Source="{Binding CurrentUser.GravatarUrl}"/>
         <TextBlock x:Name="name" HorizontalAlignment="Left" Margin="115,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Name}" VerticalAlignment="Top"/>
         <TextBlock x:Name="following_label" HorizontalAlignment="Left" Margin="115,35,0,0" TextWrapping="Wrap" Text="Following:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="following_count" HorizontalAlignment="Left" Margin="190,35,0,0" TextWrapping="Wrap" Text="{Binding CurrentUserRelationships.Followers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="following_count" HorizontalAlignment="Left" Margin="190,35,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Relationships.FollowersCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <TextBlock x:Name="followers_label" HorizontalAlignment="Left" Margin="115,60,0,0" TextWrapping="Wrap" Text="Followers:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="followers_count" HorizontalAlignment="Left" Margin="190,60,0,0" TextWrapping="Wrap" Text="{Binding CurrentUserRelationships.Following, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="somethignelse" HorizontalAlignment="Left" Margin="115,85,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock x:Name="followers_count" HorizontalAlignment="Left" Margin="190,60,0,0" TextWrapping="Wrap" Text="{Binding CurrentUser.Relationships.FollowingCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <Button x:Name="button_refresh" Command="{Binding RefreshProfileCommand}"  Content="Refresh" HorizontalAlignment="Left" Margin="108,538,0,0" VerticalAlignment="Top"/>
 
     </Grid>

@@ -81,14 +81,14 @@ namespace wpchttr.ViewModel
                 await ShowDialog("Sign in failed. Check internet connection or email and password?");
             }
 
-            foreach (var s in CurrentUser.ErrorInformation)
-            {
-                MSG += s;
-            }
-            foreach (var s in CurrentUser.Relationships.ErrorInformation)
-            {
-                MSG += s;
-            }
+            //foreach (var s in CurrentUser.ErrorInformation)
+            //{
+            //    MSG += s;
+            //}
+            //foreach (var s in CurrentUser.Relationships.ErrorInformation)
+            //{
+            //    MSG += s;
+            //}
         }
 
         private bool CurrentUserCanSignIn()

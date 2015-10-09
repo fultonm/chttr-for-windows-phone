@@ -9,6 +9,16 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="FontSize" Value="30" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
 
     </Grid>
