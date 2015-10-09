@@ -13,9 +13,11 @@ namespace wpchttr.Core
     public class Feed
     {
         public List<Chat> ChatCollection { get; set; }
+        private Relationships Relationships { get; set; }
 
-        public Feed()
+        public Feed(Relationships relationships)
         {
+            Relationships = relationships;
             GetFeed();
         }
 
@@ -53,6 +55,17 @@ namespace wpchttr.Core
             chat.CreatedAt = joChat.ParseJsonDateTime("created_at");
             chat.UpdatedAt = joChat.ParseJsonDateTime("updated_at");
             chat.PictureFileName = (joChat.SelectToken("picture") as JObject).ParseJsonString("url");
+
+            if (chat.UserId != CurrentUser.Id)
+            {
+                chat.UserName = Relationships.Followers.Concat(Relationships.Following).Where(u => u.Id == chat.UserId).First().Name;
+                chat.UserGravatarUrl = Relationships.Followers.Concat(Relationships.Following).Where(u => u.Id == chat.UserId).First().GravatarUrl;
+            }
+            else
+            {
+                chat.UserName = CurrentUser.Name;
+                chat.UserGravatarUrl = CurrentUser.GravatarUrl;
+            }
             ChatCollection.Add(chat);
         }
     }

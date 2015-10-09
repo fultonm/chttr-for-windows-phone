@@ -262,9 +262,9 @@ namespace wpchttr.Core
 
         #region fields
 
-        public int Id { get; set; }
+        public static int Id { get; set; }
 
-        public string Name { get; set; }
+        public static string Name { get; set; }
 
         private string email;
 
@@ -297,7 +297,7 @@ namespace wpchttr.Core
 
         public Chats Chats { get; set; }
 
-        public string GravatarUrl { get; set; }
+        public static string GravatarUrl { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

@@ -74,7 +74,7 @@ namespace wpchttr.ViewModel
             if (CurrentUser.SignIn())
             {
                 CurrentUser.Relationships = new Relationships();
-                CurrentUser.Feed = new Core.Feed();
+                CurrentUser.Feed = new Core.Feed(CurrentUser.Relationships);
                 SwitchView("PivotView");
             }
             else

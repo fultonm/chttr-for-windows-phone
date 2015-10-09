@@ -24,10 +24,21 @@
                   ItemsSource="{Binding CurrentUser.Feed.ChatCollection, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="0, 15, 0, 15">
-                        <TextBlock Text="{Binding Content, Mode=TwoWay}" TextWrapping="Wrap"></TextBlock>
-                        <TextBlock Text="{Binding CreatedAt, Mode=TwoWay}"></TextBlock>
-                    </StackPanel>
+                    <Grid Margin="0, 15, 0, 15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding UserGravatarUrl}" Height="70" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center"></Image>
+                        <TextBlock Text="{Binding UserName}" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
+                        <TextBlock Text="{Binding Content, Mode=TwoWay}" FontSize="12" TextWrapping="Wrap" Grid.Row="1" Grid.Column="1" Margin="0,2,0,0"></TextBlock>
+                        <TextBlock Text="{Binding CreatedAt, Mode=TwoWay}" FontSize="10"  Grid.Row="2" Grid.Column="1"></TextBlock>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

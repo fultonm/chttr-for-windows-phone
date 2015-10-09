@@ -11,6 +11,7 @@ namespace wpchttr.Core
     {
         public Relationships()
         {
+            Followers = Following = new List<User>();
             CurrentUserRelationships();
             ErrorInformation = new List<string>();
         }
@@ -55,6 +56,7 @@ namespace wpchttr.Core
             }
             Followers = ParseUsers(jo, "followers");
             Following = ParseUsers(jo, "following");
+
             return true;
         }
 
@@ -86,6 +88,8 @@ namespace wpchttr.Core
         public List<User> Followers { get; set; }
 
         public List<User> Following { get; set; }
+
+        public List<User> AllRelationships { get; set; }
 
         private int followersCount;
 
