@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace wpchttr.Core
 {
@@ -12,8 +13,13 @@ namespace wpchttr.Core
         public Relationships()
         {
             Followers = Following = new List<User>();
-            CurrentUserRelationships();
             ErrorInformation = new List<string>();
+            CurrentUserRelationships();
+        }
+
+        public void RefreshContent()
+        {
+            CurrentUserRelationships();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,22 +30,22 @@ namespace wpchttr.Core
             if (handler != null) handler(this, new PropertyChangedEventArgs(propName));
         }
 
-        private void CurrentUserRelationships()
+        private async Task CurrentUserRelationships()
         {
-            var response = GetRelationshipsResponse();
+            var response = await GetRelationshipsResponse();
             ParseResponse(response);
             FollowingCount = Following.Count;
             FollowersCount = Followers.Count;
         }
 
-        private string GetRelationshipsResponse()
+        private async Task<string> GetRelationshipsResponse()
         {
             var relationshipUrl = Session.BASE_URL + "/relationships";
             var client = new HttpClient();
             client.BaseAddress = new Uri(relationshipUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var response = client.GetAsync(relationshipUrl).Result;
-            return response.Content.ReadAsStringAsync().Result;
+            return await response.Content.ReadAsStringAsync();
         }
 
         private bool ParseResponse(string response)

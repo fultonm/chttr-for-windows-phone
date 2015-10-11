@@ -21,19 +21,24 @@ namespace wpchttr.Core
             GetFeed();
         }
 
-        private void GetFeed()
+        public void RefreshFeed()
         {
-            string response = GetFeedResponse();
+            GetFeed();
+        }
+
+        private async Task GetFeed()
+        {
+            string response = await GetFeedResponse();
             ParseFeedResponse(response);
         }
 
-        private string GetFeedResponse()
+        private async Task<string> GetFeedResponse()
         {
             var feedUrl = Session.BASE_URL + "/feed";
             var client = new HttpClient();
             client.BaseAddress = new Uri(feedUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            return client.GetStringAsync(feedUrl).Result;
+            return await client.GetStringAsync(feedUrl);
         }
 
         private void ParseFeedResponse(string response)

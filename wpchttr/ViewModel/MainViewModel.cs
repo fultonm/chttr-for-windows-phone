@@ -97,12 +97,10 @@ namespace wpchttr.ViewModel
             return true;
         }
 
-        private void RefreshProfile()
+        private void RefreshContent()
         {
-            RefreshingProfile = true;
-            CurrentUser.Relationships = new Relationships();
-            List<Chat> chats = CurrentUser.Chats.ChatCollection;
-            RefreshingProfile = false;
+            CurrentUser.Relationships.RefreshContent();
+            CurrentUser.Feed = new Core.Feed(CurrentUser.Relationships);
         }
 
         private bool CanRefreshProfile()

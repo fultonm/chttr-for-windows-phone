@@ -59,7 +59,7 @@
                 <local:Following />
             </PivotItem>
             <PivotItem Margin="0,0,0,0" Header="Followers">
-                
+                <local:Followers></local:Followers>
             </PivotItem>
         </Pivot>
     </Grid>
