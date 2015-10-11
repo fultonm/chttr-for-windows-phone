@@ -20,8 +20,8 @@
     </UserControl.Resources>
 
     <Grid>
-        <ListView x:Name="ListViewFeed"
-                  ItemsSource="{Binding CurrentUser.Feed.ChatCollection, Mode=TwoWay}">
+        <ListView x:Name="ListViewFeed" SelectedIndex="{Binding FeedSelectedIndex, Mode=TwoWay}"
+                  ItemsSource="{Binding CurrentUser.Feed.ChatCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0, 15, 0, 15">
@@ -34,10 +34,10 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding UserGravatarUrl}" Height="70" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center"></Image>
-                        <TextBlock Text="{Binding UserName}" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
-                        <TextBlock Text="{Binding Content, Mode=TwoWay}" FontSize="12" TextWrapping="Wrap" Grid.Row="1" Grid.Column="1" Margin="0,2,0,0"></TextBlock>
-                        <TextBlock Text="{Binding CreatedAt, Mode=TwoWay}" FontSize="10"  Grid.Row="2" Grid.Column="1"></TextBlock>
+                        <Image Source="{Binding UserGravatarUrl, UpdateSourceTrigger=PropertyChanged}" Height="70" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center"></Image>
+                        <TextBlock Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Grid.Row="0" Grid.Column="1"></TextBlock>
+                        <TextBlock Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="12" TextWrapping="Wrap" Grid.Row="1" Grid.Column="1" Margin="0,2,0,0"></TextBlock>
+                        <TextBlock Text="{Binding CreatedAt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="10"  Grid.Row="2" Grid.Column="1"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

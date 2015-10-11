@@ -24,9 +24,21 @@ namespace wpchttr.ViewModel
                 switchViewMessage => { SwitchView(switchViewMessage.ViewName); });
             ContentControlView = new SignIn();
             SignInCommand = new RelayCommand(CurrentUserSignIn, CurrentUserCanSignIn);
+            RefreshProfileCommand = new RelayCommand(RefreshContent, CanRefreshContent);
 
             // Debugging quick sign in
             CurrentUserSignIn();
+        }
+
+        private int feedSelectedIndex;
+        public int FeedSelectedIndex
+        {
+            get { return feedSelectedIndex; }
+            set
+            {
+                feedSelectedIndex = value;
+                ShowDialog(String.Format("Selected {0}'s chat", CurrentUser.Feed.ChatCollection[feedSelectedIndex].UserName));
+            }
         }
 
         public CurrentUser CurrentUser { get; set; }
@@ -99,8 +111,13 @@ namespace wpchttr.ViewModel
 
         private void RefreshContent()
         {
-            CurrentUser.Relationships.RefreshContent();
-            CurrentUser.Feed = new Core.Feed(CurrentUser.Relationships);
+            CurrentUser.Relationships.RefreshRelationships();
+            CurrentUser.Feed.RefreshFeed();
+        }
+
+        private bool CanRefreshContent()
+        {
+            return true;
         }
 
         private bool CanRefreshProfile()

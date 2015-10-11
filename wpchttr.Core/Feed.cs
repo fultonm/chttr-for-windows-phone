@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -10,20 +11,38 @@ using System.Threading.Tasks;
 
 namespace wpchttr.Core
 {
-    public class Feed
+    public class Feed : INotifyPropertyChanged
     {
-        public List<Chat> ChatCollection { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propName));
+        }
+
+        private List<Chat> chatCollection;
+        public List<Chat> ChatCollection
+        {
+            get { return chatCollection; }
+            set
+            {
+                OnPropertyChanged("ChatCollection");
+                chatCollection = value;
+            }
+        }
+
         private Relationships Relationships { get; set; }
 
         public Feed(Relationships relationships)
         {
             Relationships = relationships;
-            GetFeed();
+            RefreshFeed();
         }
 
-        public void RefreshFeed()
+        public async Task RefreshFeed()
         {
-            GetFeed();
+            await GetFeed();
         }
 
         private async Task GetFeed()
@@ -49,6 +68,7 @@ namespace wpchttr.Core
             {
                 ParseChat(ja[i] as JObject);
             }
+            int j = 0;
         }
 
         private void ParseChat(JObject joChat)

@@ -40,7 +40,7 @@ namespace wpchttr.Test
         [TestMethod]
         public void Chats_ReturnsCurrentUserChatCollection()
         {
-            Chats chats = currentUser.Chats = new Chats(currentUser.Id);
+            Chats chats = currentUser.Chats = new Chats(CurrentUser.Id);
             Assert.IsTrue(chats.ChatCollection.Count > 0);
         }
 
@@ -58,7 +58,7 @@ namespace wpchttr.Test
         {
             Chat chat = new Chat("Visual Studio unit testing chat submission.");
             Assert.IsTrue(chat.Submit());
-            currentUser.Chats = new Chats(currentUser.Id);
+            currentUser.Chats = new Chats(CurrentUser.Id);
             Chat retrievedChat = currentUser.Chats.ChatCollection[0];
             Assert.AreEqual(chat.Content, retrievedChat.Content);
         }

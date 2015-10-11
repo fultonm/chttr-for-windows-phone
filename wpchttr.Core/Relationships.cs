@@ -14,12 +14,12 @@ namespace wpchttr.Core
         {
             Followers = Following = new List<User>();
             ErrorInformation = new List<string>();
-            CurrentUserRelationships();
+            RefreshRelationships();
         }
 
-        public void RefreshContent()
+        public async Task RefreshRelationships()
         {
-            CurrentUserRelationships();
+            await CurrentUserRelationships();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -91,9 +91,27 @@ namespace wpchttr.Core
 
         #region fields;
 
-        public List<User> Followers { get; set; }
+        private List<User> followers;
+        public List<User> Followers
+        {
+            get { return followers; }
+            set
+            {
+                OnPropertyChanged("Followers");
+                followers = value;
+            }
+        }
 
-        public List<User> Following { get; set; }
+        private List<User> following;
+        public List<User> Following
+        {
+            get { return following; }
+            set
+            {
+                OnPropertyChanged("Following");
+                following = value;
+            }
+        }
 
         public List<User> AllRelationships { get; set; }
 

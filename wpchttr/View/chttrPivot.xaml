@@ -48,10 +48,10 @@
                 <TextBlock x:Name="textblock_currentuser_following_count" Grid.Column="2" Grid.Row="2"
         	    Text="{Binding CurrentUser.Relationships.FollowingCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         	    HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" />
-                <Button Content="New Chat" Grid.Column="3" Grid.RowSpan="3"></Button>
+                <Button Content="Refresh All" Grid.Column="3" Grid.RowSpan="3" Command="{Binding RefreshProfileCommand}"></Button>
             </Grid>
         </StackPanel>
-        <Pivot Grid.Row="1">
+        <Pivot Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <PivotItem Margin="0,0,0,0" Header="Feed">
                 <local:Feed />
             </PivotItem>
